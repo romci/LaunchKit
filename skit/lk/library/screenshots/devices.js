@@ -26,6 +26,7 @@ var IPHONE_4 = 'iphone4';
 var IPHONE_5 = 'iphone5';
 var IPHONE_6 = 'iphone6';
 var IPHONE_6PLUS = 'iphone6plus';
+var IPHONE_XR = 'iphonexr';
 var IPAD = 'ipad';
 var IPAD_LANDSCAPE = 'ipadlandscape';
 var IPADPRO = 'ipadpro';
@@ -40,7 +41,7 @@ var NEXUS_9_LANDSCAPE = 'nexus9landscape';
 
 var IOS = [{
   name: IPHONE_4,
-  properName: 'iPhone 4s',
+  properName: 'iPhone 4s deprecated',
   filenamePrefix: '3.5-inch (iPhone 4)',
   type: 'phone',
   overrideName: 'iphone480',
@@ -174,7 +175,43 @@ var IOS = [{
     gold: {src:'/__static__/devices/iPhone6PlusGoldLandscape.png'},
     rose: {src:'/__static__/devices/iPhone6PlusRoseLandscape.png'}
   },
-}, {
+},
+{
+  name: IPHONE_XR,
+  properName: 'iPhone XR',
+  filenamePrefix: '6.5-inch (iPhone XR, Xs Max)',
+  type: 'phone',
+  overrideName: 'iphone896_under',
+
+  naturalMultiplier: 3,
+
+  portrait: {
+    width: 414,
+    height: 896,
+    screenLeft: 106 / 1151,
+    screenTop: 94 / 2285,
+    screenWidth: 940 / 1151,
+    screenHeight: 2038 / 2285,
+    white: {src:'/__static__/devices/iPhoneXRWhite.png'},
+    black: {src:'/__static__/devices/iPhoneXRBlack.png'},
+    gold: {src:'/__static__/devices/iPhoneXRWhite.png'},
+    rose: {src:'/__static__/devices/iPhoneXRBlack.png'}
+
+  },
+  landscape: {
+    width: 736,
+    height: 414,
+    screenLeft: 315 / 2285,
+    screenTop: 106 / 1151,
+    screenWidth: 1669 / 2285,
+    screenHeight: 940 / 1151,
+    white: {src:'/__static__/devices/iPhone6PlusWhiteLandscape.png'},
+    black: {src:'/__static__/devices/iPhone6PlusBlackLandscape.png'},
+    gold: {src:'/__static__/devices/iPhone6PlusGoldLandscape.png'},
+    rose: {src:'/__static__/devices/iPhone6PlusRoseLandscape.png'}
+  },
+},
+{
   name: IPAD,
   requiresPremium: true,
   properName: 'iPad',
@@ -378,7 +415,7 @@ var PLATFORM_LIST = ['iOS','Android'];
 
 var PLATFORMS = {
   'iOS': {
-    'defaultDevice': 'iphone6',
+    'defaultDevice': 'iphonexr',
     'devices': IOS
   },
   'Android': {
@@ -436,6 +473,7 @@ module.exports = {
   IPHONE_5: IPHONE_5,
   IPHONE_6: IPHONE_6,
   IPHONE_6PLUS: IPHONE_6PLUS,
+  IPHONE_XR: IPHONE_XR,
   IPAD: IPAD,
   IPAD_LANDSCAPE : IPAD_LANDSCAPE,
   IPADPRO: IPADPRO,

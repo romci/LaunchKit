@@ -235,6 +235,11 @@ var ScreenshotCanvasWrapper = util.createClass({
           multiplier -= multiplierTextAdjustment
           break;
 
+        case 'iphonexr':
+          multiplier = (this.orientation == 'portrait') ? .85 : 1;
+          multiplier -= multiplierTextAdjustment
+          break;
+
         case 'ipad':
           multiplier = 0.92 - multiplierTextAdjustment;
           break;
@@ -261,6 +266,9 @@ var ScreenshotCanvasWrapper = util.createClass({
         case 'iphone6plus':
           multiplier = (this.orientation == 'portrait') ? 0.90 : 1;
           break;
+        case 'iphonexr':
+          multiplier = (this.orientation == 'portrait') ? 0.90 : 1;
+          break;
         case 'ipad':
           multiplier = (this.orientation == 'portrait') ? 0.96 : 1;
           break;
@@ -283,6 +291,10 @@ var ScreenshotCanvasWrapper = util.createClass({
 
     var phone = this.phone;
     var phoneImage = this.phone[this.orientation][this.phoneColor]['img'];
+    
+    console.log("Phone", phone);
+    
+    var isImageUnder = (phone.deviceType && phone.deviceType.indexOf('_under') >= 0);
 
     var hasScreenshotImage = this.screenshotImage && this.screenshotImage.complete;
 
@@ -440,7 +452,8 @@ var ScreenshotCanvasWrapper = util.createClass({
       }
 
       // If we have the phone loaded, draw the phone image on the canvas.
-      if (!invisPhoneImage && phoneImage.complete) {
+      // if Image is Under Phone, we render this below
+      if (!isImageUnder && !invisPhoneImage && phoneImage.complete) {
         context.drawImage(phoneImage, phoneImageLeft, phoneImageTop,
             phoneImageWidth, phoneImageHeight);
       }
@@ -527,6 +540,14 @@ var ScreenshotCanvasWrapper = util.createClass({
           screenshotTargetRect.x, screenshotTargetRect.y,
           screenshotTargetRect.width, screenshotTargetRect.height);
     }
+    
+    // if image is under, we first render image and then phone
+    if (isImageUnder && !invisPhoneImage && phoneImage.complete) {
+        context.drawImage(phoneImage, phoneImageLeft, phoneImageTop,
+            phoneImageWidth, phoneImageHeight);
+      }
+
+    
   },
 
   renderToDataURL: function(opt_quality) {
